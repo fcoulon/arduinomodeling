@@ -4,15 +4,19 @@ import org.eclipse.emf.ecore.EObject;
 
 public class JavaServices {
 	
-	public static long getTime(EObject obj) {
-		return System.nanoTime();
+	public static int getTime(EObject obj) {
+		return (int) (System.nanoTime()/1000000000); // in seconds
 	}
 	
-	public static void sleep(long time) {
+	public static void sleep(int time) {
 		try {
 			Thread.sleep(time);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static Integer mod(Integer left, Integer right) {
+		return left % right;
 	}
 }

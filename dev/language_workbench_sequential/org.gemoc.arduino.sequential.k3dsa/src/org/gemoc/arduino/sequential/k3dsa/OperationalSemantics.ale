@@ -7,7 +7,7 @@ open class Instruction {
 	def Project getProject (Module module) {
 		Project project := null;
 		
-		current := self.eContainer();
+		EObject current := self.eContainer();
 		while (current != null) {
 			if(current.oclIsKindOf(arduino::Project)) {
 				project := current;
@@ -20,7 +20,7 @@ open class Instruction {
 	
 	def Pin getPin(Module module) {
 		Pin pin := null;
-		project := self.getProject(module);
+		Project project := self.getProject(module);
 		
 		for(board in project.boards) {
 			if(board != null and board.oclIsKindOf(arduino::ArduinoBorad)) {
@@ -51,7 +51,9 @@ open class Instruction {
 open class Project {
 	
 	def void execute() {
-		sketches := self.sketches;
+		('DEBUG: exec').log();
+		Sequence(arduino::Sketch) sketches := self.sketches;
+		('DEBUG: '+sketches).log();
 		while(true) {
 			for(s in sketches) {
 				s.block.execute();
@@ -61,26 +63,35 @@ open class Project {
 	
 	@main
 	def void main() {
-		start := self.getTime();
+		'DEBUG: main'.log();
+		Integer start := self.getTime();
+		('DEBUG: '+start).log();
 		self.execute();
-		stop := self.getTime();
+		Integer stop := self.getTime();
 		('time to execute ' + (stop - start)).log();
 	}
 	
 	@step
 	def void setup() {
+		('DEBUG: SETUP').log();
 		
 		for(o in self.eAllContents()) {
 			if(o.oclIsKindOf(arduino::IntegerVariable)) {
 				o.value := o.initialValue;
+				('DEBUG: SETUP '+o).log();
+				('DEBUG: SETUP intVal '+o.value).log();
 			}
 			else {
 				if(o.oclIsKindOf(arduino::BooleanVariable)) {
 					o.value := o.initialValue;
+					('DEBUG: SETUP '+o).log();
+					('DEBUG: SETUP boolVal '+o.value).log();
 				}
 				else {
 					if (o.oclIsKindOf(arduino::Pin)) {
 						o.level := 0;
+						('DEBUG: SETUP '+o).log();
+						('DEBUG: SETUP lvl '+o.level).log();
 					}
 				}
 			}
@@ -89,20 +100,23 @@ open class Project {
 	
 	@init
 	def void initializeModel(Sequence(String) args){
-		self.setup;
+		self.setup();
 	}
 }
 
 open class VariableAssignment {
 	@step
 	def void execute() {
-		variable := self.variable;
-		value := self.operand.evaluate();
+		Variable variable := self.variable;
 		if (variable.oclIsKindOf(arduino::IntegerVariable)){
-			variable.value := value;
+			('DEBUG: Assign '+self).log();
+			('DEBUG: Assign op '+self.operand).log();
+			('DEBUG: Assign op  val '+self.operand.evaluate()).log();
+			variable.value := self.operand.evaluate();
+			('DEBUG: Assign var  val '+variable.value).log();
 		}
 		if (variable.oclIsKindOf(arduino::BooleanVariable)){
-			variable.value := value;
+			variable.value := self.operand.evaluate();
 		}
 	}
 }
@@ -123,15 +137,18 @@ open class ModuleInstruction {
 open class ModuleAssignment {
 	@step
 	def void execute() {
-		pin := self.getPin(self.module);
+		('DEBUG: ModuleAssign '+self).log();
+		Pin pin := self.module.getPin();
+		('DEBUG: pin  '+pin).log();
 		if (self.operand.oclIsKindOf(arduino::IntegerExpression)){
-			pin.level := self.operand.evaluate;
+			pin.level := self.operand.evaluate();
+			('DEBUG: pinlvl  '+self.operand.evaluate()).log();
 		}
 		if (self.operand.oclIsKindOf(arduino::BooleanExpression)){
 			if (self.operand.evaluate()){
-				pin.level := HIGH;
+				pin.level := 1023; //HIGH
 			} else {
-				pin.level := LOW;
+				pin.level := 0; //LOW
 			}
 		}
 		
@@ -155,12 +172,12 @@ open class BluetoothTransceiver {
 	@step
 	def void push(){
 		for(t in self.connectedTransceiver) {
-			l := t.dataReceived;
+			Sequence(Integer) l := t.dataReceived;
 			for(i in self.dataToSend) {
 				l.add(i);
 			}
 		}
-		self.dataToSend.clear;
+		self.dataToSend := Sequence{};
 	}
 }
 
@@ -246,31 +263,37 @@ open class Utilities {
 
 open class BinaryIntegerExpression {
 	def Object evaluate() {
-		Integer res;
-		iLeft := 0;
+		('DEBUG: BinaryExp '+self).log();
+		Integer iLeft := 0;
 		iLeft := self.left.evaluate();
 		
-		iRight := 0;
+		Integer iRight := 0;
 		iRight := self.right.evaluate();
 		
 		result :=
 			switch (self.operator) {
-				case DIV: iLeft / iRight
-				case MAX: Math.max(iLeft, iRight)
-				case MIN: Math.min(iLeft, iRight)
-				case MINUS: iLeft - iRight
-				case MUL: iLeft * iRight
-				case PLUS: iLeft + iRight
-				//FIXME
-//				case POURCENT: iLeft % iRight
+				case (arduino::BinaryIntegerOperatorKind::div) : iLeft / iRight
+				case (arduino::BinaryIntegerOperatorKind::max) : Math.max(iLeft, iRight)
+				case (arduino::BinaryIntegerOperatorKind::min) : Math.min(iLeft, iRight)
+				case (arduino::BinaryIntegerOperatorKind::minus) : iLeft - iRight
+				case (arduino::BinaryIntegerOperatorKind::mul) : iLeft * iRight
+				case (arduino::BinaryIntegerOperatorKind::plus) : iLeft + iRight
+				case (arduino::BinaryIntegerOperatorKind::pourcent) : iLeft.mod(iRight)
 				default: 0
 			};
+		
+		('DEBUG: BinaryExp left '+self.left).log();
+		('DEBUG: BinaryExp left '+iLeft).log();
+		('DEBUG: BinaryExp right '+self.right).log();
+		('DEBUG: BinaryExp right '+iRight).log();
+		('DEBUG: BinaryExp op '+self.operator).log();
+		('DEBUG: BinaryExp res '+result).log();
 	}
 }
 
 open class BooleanModuleGet {
 	def Object evaluate() {
-		pin := self.instruction.getPin(self.module);
+		Pin pin := self.instruction.getPin(self.module);
 		if (pin.level = 0){
 			result := false;
 		}
@@ -297,8 +320,8 @@ open class IntegerModuleGet {
 		
 		//FIXME Here it is dirty but I think we should 'transmit' the value in the module itself as the wire should do in true life
 		if (self.module.oclIsKindOf(arduino::BluetoothTransceiver)){
-			l := self.module.dataReceived;
-			res := l.head;
+			Sequence(Integer) l := self.module.dataReceived;
+			Integer res := l->first();
 			if (res != null) {
 				l.remove(0);
 				result := res;
@@ -306,19 +329,19 @@ open class IntegerModuleGet {
 				result := 0;
 			}
 		}
-		
-		pin := self.instruction.getPin(self.module);
-		result := pin.level;
+		else {
+			Pin pin := self.instruction.getPin(self.module);
+			result := pin.level;
+		}
 	}
 }
 
 open class BinaryBooleanExpression {
 	def Object evaluate() {
-		leftIsBoolean := false;
-		rightIsBoolean := false;
-		Boolean res;
-		bLeft := false;
-		iLeft := 0;
+		Boolean leftIsBoolean := false;
+		Boolean rightIsBoolean := false;
+		Boolean bLeft := false;
+		Integer iLeft := 0;
 		if(self.left.oclIsKindOf(arduino::BooleanExpression)) {
 			bLeft := self.left.evaluate();
 			leftIsBoolean := true;
@@ -327,8 +350,8 @@ open class BinaryBooleanExpression {
 			iLeft := self.left.evaluate();
 		}
 		
-		bRight := false;
-		iRight := 0;
+		Boolean bRight := false;
+		Boolean iRight := 0;
 		if(self.right.oclIsKindOf(arduino::BooleanExpression)) {
 			bRight := self.right.evaluate();
 			rightIsBoolean := true;
@@ -337,29 +360,29 @@ open class BinaryBooleanExpression {
 			iRight := self.right.evaluate();
 		}
 		result := switch(self.operator) {
-			case AND:
+			case (arduino::BinaryBooleanOperatorKind::and) :
 				if bLeft then
 					bRight
 				else 
 					Boolean.FALSE
 				endif
-			case OR:
+			case (arduino::BinaryBooleanOperatorKind::or) :
 				if bLeft then
 					Boolean.TRUE
 				else 
 					bRight
 				endif
-			case DIFFERENT: not(bLeft.equals(bRight))
-			case EQUAL:
+			case (arduino::BinaryBooleanOperatorKind::Different) : not(bLeft.equals(bRight))
+			case (arduino::BinaryBooleanOperatorKind::equal) :
 				if leftIsBoolean then
 					bLeft.equals(bRight)
 				else 
 					iLeft.equals(iRight)
 				endif
-			case INF: iLeft < iRight
-			case INF_OR_EQUAL: iLeft <= iRight
-			case SUP: iLeft > iRight
-			case SUP_OR_EQUAL: iLeft >= iRight
+			case (arduino::BinaryBooleanOperatorKind::inf) : iLeft < iRight
+			case (arduino::BinaryBooleanOperatorKind::infOrEqual) : iLeft <= iRight
+			case (arduino::BinaryBooleanOperatorKind::sup) : iLeft > iRight
+			case (arduino::BinaryBooleanOperatorKind::supOrEqual) : iLeft >= iRight
 			default : 0
 			};
 	}
@@ -384,10 +407,7 @@ open class Delay {
 }
 
 open class Pin {
-	Integer level := LOW;
-
-	Integer LOW := 0;
-	Integer HIGH := 1023;
+	Integer level;
 }
 
 open class Variable {
@@ -400,7 +420,9 @@ open class IntegerVariable {
 	Integer value;
 	
 	def Object evaluate(){
+		('DEBUG: IntVar '+self).log();
 		result := self.value;
+		('DEBUG: IntVar res '+result).log();
 	}
 }
 
@@ -422,22 +444,26 @@ open class VariableRef {
 		}
 	}
 	
-	def String computeDynamicLabel(VariableRef variableRef) {
-		if (variableRef.oclIsKindOf(arduino::BooleanVariableRef)) {
-			BooleanVariable variable := variableRef.getVariable();
-			if (variable.getValue() != null) {
-				result := variable.getName() + '(=' + variable.getValue() + ')';
-			}
-			result := variable.getName();
-		}
-		if (variableRef.oclIsKindOf(arduino::IntegerVariableRef)) {
-			IntegerVariable variable := variableRef.getVariable(); 
-			if (variable.getValue() != null) {
-				result := variable.getName() + '(=' + variable.getValue() + ')';
-			}
-			result := variable.getName();
-		}
+	def String computeDynamicLabel() {
 		result := '';
+		if (self.oclIsKindOf(arduino::BooleanVariableRef)) {
+			BooleanVariable variable := self.variable;
+			if (variable.value != null) {
+				result := variable.name + '(=' + variable.value + ')';
+			}
+			else {
+				result := variable.name;
+			}
+		}
+		if (self.oclIsKindOf(arduino::IntegerVariableRef)) {
+			IntegerVariable variable := self.variable;
+			if (variable.value != null) {
+				result := variable.name + '(=' + variable.value + ')';
+			}
+			else {
+				result := variable.name;
+			}
+		}
 	}
 }
 
@@ -445,7 +471,7 @@ open class Expression {
 	def Instruction getInstruction() {
 		Instruction instruction := null;
 
-		current := self.eContainer();
+		EObject current := self.eContainer();
 		while (current != null) {
 			if (current.oclIsKindOf(arduino::Instruction)) {
 				instruction := current;
@@ -463,24 +489,69 @@ open class Expression {
 }
 
 open class LED {
-	def String getImage(LED led) {
-		Integer level := led.getPin(led).level;
+	def String getImage() {
+		Integer level := self.getPin().level;
+//		('DEBUG: LED '+ self).log();
+//		('DEBUG: LED pin '+ self.getPin()).log();
+//		('DEBUG: LED lvl '+ self.getPin().level).log();
+//		('DEBUG: LED color '+ self.color).log();
 		if (level != null and level > 0) {
 			result :=
-				switch (led.getColor()) {
-					case BLUE: '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/blue_led_1023.jpg'
-					case RED: '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/red_led_1023.jpg'
-					case WHITE: '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/white_led_1023.jpg'
+				switch (self.color) {
+					case (arduino::Color::blue) : '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/blue_led_1023.jpg'
+					case (arduino::Color::red) : '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/red_led_1023.jpg'
+					case (arduino::Color::white) : '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/white_led_1023.jpg'
 					default : '/org.gemoc.arduino.sequential.xarduino.design/images/default.svg'
 				};
 		}
 		result :=
-			switch (led.getColor()) {
-				case BLUE: '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/blue_led.jpg'
-				case RED: '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/red_led.jpg'
-				case WHITE: '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/white_led.jpg'
+			switch (self.color) {
+				case (arduino::Color::blue) : '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/blue_led.jpg'
+				case (arduino::Color::red) : '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/red_led.jpg'
+				case (arduino::Color::white) : '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/white_led.jpg'
 				default : '/org.gemoc.arduino.sequential.xarduino.design/images/default.svg'
 			};
+//		('DEBUG: LED'+ result).log();
 		//result := '/org.gemoc.arduino.sequential.xarduino.design/images/default.svg';
+	}
+}
+
+open class Module {
+	
+	def Project getProject() {
+		Project project := null;
+		
+		EObject current := self.eContainer();
+		while (current != null) {
+			if(current.oclIsKindOf(arduino::Project)) {
+				project := current;
+			}
+			current := current.eContainer();
+		}
+		
+		result := project;
+	}
+	
+	def Pin getPin() {
+		Pin pin := null;
+		Project project := self.getProject();
+		
+		for(board in project.boards) {
+			if(board != null and board.oclIsKindOf(arduino::ArduinoBoard)) {
+				ArduinoBoard arduinoBoard := board;
+				for (analogPin in arduinoBoard.analogPins) {
+					if (analogPin.module = self) {
+						pin := analogPin;
+					}
+				}
+				for (digitalPin in arduinoBoard.digitalPins) {
+					if (digitalPin.module = self) {
+						pin := digitalPin;
+					}
+				}
+			}
+		}
+		
+		result := pin;
 	}
 }
