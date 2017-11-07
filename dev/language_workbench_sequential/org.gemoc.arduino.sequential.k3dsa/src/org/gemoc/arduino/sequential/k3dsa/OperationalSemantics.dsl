@@ -1,0 +1,2 @@
+syntax=platform:/resource/org.gemoc.arduino.sequential.model/model/arduino.ecore
+behavior=platform:/resource/org.gemoc.arduino.sequential.k3dsa/src/org/gemoc/arduino/sequential/k3dsa/OperationalSemantics.ale

@@ -1,0 +1,486 @@
+behavior org.gemoc.arduino.sequential.dsa;
+
+use org.gemoc.arduino.sequential.k3dsa.JavaServices;
+use org.gemoc.arduino.sequential.xardunio.design.services.ArduinoServices;
+
+open class Instruction {
+	def Project getProject (Module module) {
+		Project project := null;
+		
+		current := self.eContainer();
+		while (current != null) {
+			if(current.oclIsKindOf(arduino::Project)) {
+				project := current;
+			}
+			current := current.eContainer();
+		}
+		
+		result := project;
+	}
+	
+	def Pin getPin(Module module) {
+		Pin pin := null;
+		project := self.getProject(module);
+		
+		for(board in project.boards) {
+			if(board != null and board.oclIsKindOf(arduino::ArduinoBorad)) {
+				ArduinoBoard arduinoBoard := board;
+				for (analogPin in arduinoBoard.analogPins) {
+					if (analogPin.module = module) {
+						pin := analogPin;
+					}
+				}
+				for (digitalPin in arduinoBoard.digitalPins) {
+					if (digitalPin.module = module) {
+						pin := digitalPin;
+					}
+				}
+			}
+		}
+		
+		result := pin;
+	}
+	
+	def void execute() {
+	}
+	
+	def void finalize() {
+	}
+}
+
+open class Project {
+	
+	def void execute() {
+		sketches := self.sketches;
+		while(true) {
+			for(s in sketches) {
+				s.block.execute();
+			}
+		}
+	}
+	
+	@main
+	def void main() {
+		start := self.getTime();
+		self.execute();
+		stop := self.getTime();
+		('time to execute ' + (stop - start)).log();
+	}
+	
+	@step
+	def void setup() {
+		
+		for(o in self.eAllContents()) {
+			if(o.oclIsKindOf(arduino::IntegerVariable)) {
+				o.value := o.initialValue;
+			}
+			else {
+				if(o.oclIsKindOf(arduino::BooleanVariable)) {
+					o.value := o.initialValue;
+				}
+				else {
+					if (o.oclIsKindOf(arduino::Pin)) {
+						o.level := 0;
+					}
+				}
+			}
+		}
+	}
+	
+	@init
+	def void initializeModel(Sequence(String) args){
+		self.setup;
+	}
+}
+
+open class VariableAssignment {
+	@step
+	def void execute() {
+		variable := self.variable;
+		value := self.operand.evaluate();
+		if (variable.oclIsKindOf(arduino::IntegerVariable)){
+			variable.value := value;
+		}
+		if (variable.oclIsKindOf(arduino::BooleanVariable)){
+			variable.value := value;
+		}
+	}
+}
+
+open class Block {
+	def void execute() {
+		for (i in self.instructions) {
+			i.execute();
+		}
+	}
+}
+
+open class ModuleInstruction {
+	def void execute() {
+	}
+}
+
+open class ModuleAssignment {
+	@step
+	def void execute() {
+		pin := self.getPin(self.module);
+		if (self.operand.oclIsKindOf(arduino::IntegerExpression)){
+			pin.level := self.operand.evaluate;
+		}
+		if (self.operand.oclIsKindOf(arduino::BooleanExpression)){
+			if (self.operand.evaluate()){
+				pin.level := HIGH;
+			} else {
+				pin.level := LOW;
+			}
+		}
+		
+		//FIXME Here it is dirty but I think we should 'transmit' the value in the module itself as the wire should do in true life
+		if (self.module.oclIsKindOf(arduino::BluetoothTransceiver)){
+			self.module.dataToSend.add(pin.level);
+			//FIXME temporary solution
+			self.module.push();
+		}
+	}
+}
+
+open class ArduinoCommunicationModule {
+	def void push() {}
+}
+
+open class BluetoothTransceiver {
+	Sequence(Integer) dataToSend;
+	Sequence(Integer) dataReceived;
+	
+	@step
+	def void push(){
+		for(t in self.connectedTransceiver) {
+			l := t.dataReceived;
+			for(i in self.dataToSend) {
+				l.add(i);
+			}
+		}
+		self.dataToSend.clear;
+	}
+}
+
+open class arduino.VariableDeclaration {
+	@step
+	def void execute() {
+		if(self.variable.oclIsKindOf(arduino::IntergerVariable)) {
+			self.variable.value := self.variable.initialValue;
+		}
+		if(self.variable.oclIsKindOf(arduino::BooleanVariable)) {
+			self.variable.value := self.variable.initialValue;
+		}
+	}
+}
+
+open class Control {
+	def void execute() {
+	}
+	def Boolean evaluate() {
+	}
+}
+
+open class If {
+	def Boolean evaluate() {
+		Boolean resCond := false;
+		if (self.condition.oclIsKindOf(arduino::BooleanExpression)){
+			resCond := self.condition.evaluate();
+		}
+		result := resCond;
+	}
+	
+	@step
+	def void execute() {
+		if (self.evaluate()) {
+			self.block.execute();
+		} else {
+			if (self.elseBlock != null) {
+				self.elseBlock.execute();
+			}
+		}
+	}
+}
+
+open class Repeat {
+	Integer i := 0;
+
+	def Boolean evaluate() {
+		Boolean resCond := false;
+		resCond := (self.i  < self.iteration);
+		self.i := self.i+1;
+		result := resCond;
+	}
+
+	def void finalize() {
+		self.i := 0;
+	}
+	
+	@step
+	def void execute() {
+		while (self.evaluate()) {
+			self.block.execute();
+		}
+		self.finalize();
+	}
+}
+
+open class While {
+	def Boolean evaluate() {
+		Boolean resCond := self.condition.evaluate();
+		result := resCond;
+	}
+	def void execute() {
+		while (self.evaluate()) {
+			self.block.execute();
+		}
+	}
+}
+
+open class Utilities {
+	def void execute() {
+	}
+}
+
+open class BinaryIntegerExpression {
+	def Object evaluate() {
+		Integer res;
+		iLeft := 0;
+		iLeft := self.left.evaluate();
+		
+		iRight := 0;
+		iRight := self.right.evaluate();
+		
+		result :=
+			switch (self.operator) {
+				case DIV: iLeft / iRight
+				case MAX: Math.max(iLeft, iRight)
+				case MIN: Math.min(iLeft, iRight)
+				case MINUS: iLeft - iRight
+				case MUL: iLeft * iRight
+				case PLUS: iLeft + iRight
+				//FIXME
+//				case POURCENT: iLeft % iRight
+				default: 0
+			};
+	}
+}
+
+open class BooleanModuleGet {
+	def Object evaluate() {
+		pin := self.instruction.getPin(self.module);
+		if (pin.level = 0){
+			result := false;
+		}
+		else {
+			result := true;
+		}
+	}
+}
+
+open class BooleanConstant {
+	def Object evaluate() {
+		result := self.value;
+	}
+}
+
+open class IntegerConstant {
+	def Object evaluate() {
+		result := self.value;
+	}
+}
+
+open class IntegerModuleGet {
+	def Object evaluate() {
+		
+		//FIXME Here it is dirty but I think we should 'transmit' the value in the module itself as the wire should do in true life
+		if (self.module.oclIsKindOf(arduino::BluetoothTransceiver)){
+			l := self.module.dataReceived;
+			res := l.head;
+			if (res != null) {
+				l.remove(0);
+				result := res;
+			} else {
+				result := 0;
+			}
+		}
+		
+		pin := self.instruction.getPin(self.module);
+		result := pin.level;
+	}
+}
+
+open class BinaryBooleanExpression {
+	def Object evaluate() {
+		leftIsBoolean := false;
+		rightIsBoolean := false;
+		Boolean res;
+		bLeft := false;
+		iLeft := 0;
+		if(self.left.oclIsKindOf(arduino::BooleanExpression)) {
+			bLeft := self.left.evaluate();
+			leftIsBoolean := true;
+		}
+		if(self.left.oclIsKindOf(arduino::IntegerExpression)) {
+			iLeft := self.left.evaluate();
+		}
+		
+		bRight := false;
+		iRight := 0;
+		if(self.right.oclIsKindOf(arduino::BooleanExpression)) {
+			bRight := self.right.evaluate();
+			rightIsBoolean := true;
+		}
+		if(self.right.oclIsKindOf(arduino::IntegerExpression)) {
+			iRight := self.right.evaluate();
+		}
+		result := switch(self.operator) {
+			case AND:
+				if bLeft then
+					bRight
+				else 
+					Boolean.FALSE
+				endif
+			case OR:
+				if bLeft then
+					Boolean.TRUE
+				else 
+					bRight
+				endif
+			case DIFFERENT: not(bLeft.equals(bRight))
+			case EQUAL:
+				if leftIsBoolean then
+					bLeft.equals(bRight)
+				else 
+					iLeft.equals(iRight)
+				endif
+			case INF: iLeft < iRight
+			case INF_OR_EQUAL: iLeft <= iRight
+			case SUP: iLeft > iRight
+			case SUP_OR_EQUAL: iLeft >= iRight
+			default : 0
+			};
+	}
+}
+
+open class Constant {
+	def Object evaluate() {
+		if(self.oclIsKindOf(arduino::BooleanConstant)) {
+			result := self.value;
+		}
+		if(self.oclIsKindOf(arduino::IntegerConstant)) {
+			result := self.value;
+		}
+	}
+}
+
+open class Delay {
+	@step
+	def void execute() {
+		self.value.sleep();
+	}
+}
+
+open class Pin {
+	Integer level := LOW;
+
+	Integer LOW := 0;
+	Integer HIGH := 1023;
+}
+
+open class Variable {
+	def Object evaluate() {
+		
+	}
+}
+
+open class IntegerVariable {
+	Integer value;
+	
+	def Object evaluate(){
+		result := self.value;
+	}
+}
+
+open class BooleanVariable {
+	Boolean value;
+	
+	def Object evaluate(){
+		result := self.value;
+	}
+}
+
+open class VariableRef {
+	def Object evaluate(){
+		if(self.oclIsKindOf(arduino::BooleanVariableRef)) {
+			result := self.variable.evaluate();
+		}
+		if(self.oclIsKindOf(arduino::IntegerVariableRef)) {
+			result := self.variable.evaluate();
+		}
+	}
+	
+	def String computeDynamicLabel(VariableRef variableRef) {
+		if (variableRef.oclIsKindOf(arduino::BooleanVariableRef)) {
+			BooleanVariable variable := variableRef.getVariable();
+			if (variable.getValue() != null) {
+				result := variable.getName() + '(=' + variable.getValue() + ')';
+			}
+			result := variable.getName();
+		}
+		if (variableRef.oclIsKindOf(arduino::IntegerVariableRef)) {
+			IntegerVariable variable := variableRef.getVariable(); 
+			if (variable.getValue() != null) {
+				result := variable.getName() + '(=' + variable.getValue() + ')';
+			}
+			result := variable.getName();
+		}
+		result := '';
+	}
+}
+
+open class Expression {
+	def Instruction getInstruction() {
+		Instruction instruction := null;
+
+		current := self.eContainer();
+		while (current != null) {
+			if (current.oclIsKindOf(arduino::Instruction)) {
+				instruction := current;
+				result := instruction;
+			}
+			current := current.eContainer();
+		}
+		
+		result := instruction;
+	}
+	
+	def Object evaluate() {
+		
+	}
+}
+
+open class LED {
+	def String getImage(LED led) {
+		Integer level := led.getPin(led).level;
+		if (level != null and level > 0) {
+			result :=
+				switch (led.getColor()) {
+					case BLUE: '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/blue_led_1023.jpg'
+					case RED: '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/red_led_1023.jpg'
+					case WHITE: '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/white_led_1023.jpg'
+					default : '/org.gemoc.arduino.sequential.xarduino.design/images/default.svg'
+				};
+		}
+		result :=
+			switch (led.getColor()) {
+				case BLUE: '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/blue_led.jpg'
+				case RED: '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/red_led.jpg'
+				case WHITE: '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/white_led.jpg'
+				default : '/org.gemoc.arduino.sequential.xarduino.design/images/default.svg'
+			};
+		//result := '/org.gemoc.arduino.sequential.xarduino.design/images/default.svg';
+	}
+}

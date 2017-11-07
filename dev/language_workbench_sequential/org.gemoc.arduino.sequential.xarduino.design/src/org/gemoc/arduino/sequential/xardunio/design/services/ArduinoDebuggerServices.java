@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.gemoc.arduino.sequential.xarduino.arduino.Board;
-import org.gemoc.arduino.sequential.xarduino.arduino.Module;
-import org.gemoc.arduino.sequential.xarduino.arduino.Pin;
-import org.gemoc.arduino.sequential.xarduino.arduino.Project;
+import org.gemoc.sequential.model.arduino.Board;
+import org.gemoc.sequential.model.arduino.Module;
+import org.gemoc.sequential.model.arduino.Pin;
+import org.gemoc.sequential.model.arduino.Project;
 import org.gemoc.arduino.sequential.xarduino.design.ArduinoDesignerUtils;
-import org.gemoc.executionframework.extensions.sirius.services.AbstractGemocDebuggerServices;
+import org.eclipse.gemoc.executionframework.extensions.sirius.services.AbstractGemocDebuggerServices;
 
 public class ArduinoDebuggerServices extends AbstractGemocDebuggerServices{
 
@@ -25,13 +25,13 @@ public class ArduinoDebuggerServices extends AbstractGemocDebuggerServices{
 		return res;
 	}
 
-	public Integer getLevel(Pin pin) {
-		return pin.getLevel();
-	}
-
-	public Integer getLevel(Module module) {
-		return ArduinoDesignerUtils.getPin(module).getLevel();
-	}
+//	public Integer getLevel(Pin pin) {
+//		return pin.getLevel();
+//	}
+//
+//	public Integer getLevel(Module module) {
+//		return ArduinoDesignerUtils.getPin(module).getLevel();
+//	}
 
 	protected Project getUserRootProject(EObject obj){
 		// not very nice, we suppose that the first loaded resource will contain the root project
@@ -43,15 +43,15 @@ public class ArduinoDebuggerServices extends AbstractGemocDebuggerServices{
 		return null;
 	}
 	
-	public Integer getLevel(Board platform) {
-		return 0;
-	}
+//	public Integer getLevel(Board platform) {
+//		return 0;
+//	}
 	
-	public boolean isModuleOn(Module module) {
-		return ArduinoDesignerUtils.getPin(module).getLevel() > 0;
-	}
+//	public boolean isModuleOn(Module module) {
+//		return ArduinoDesignerUtils.getPin(module).getLevel() > 0;
+//	}
 	
 	public String getModelIdentifier() {
-		return org.gemoc.execution.sequential.javaengine.ui.Activator.PLUGIN_ID+".debugModel";
+		return org.eclipse.gemoc.execution.sequential.javaengine.ui.Activator.PLUGIN_ID+".debugModel";
 	}
 }

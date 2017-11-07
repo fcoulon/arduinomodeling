@@ -36,60 +36,60 @@ import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
 import org.eclipse.sirius.viewpoint.description.Viewpoint;
-import org.gemoc.arduino.sequential.xarduino.arduino.AmbientLightSensor;
-import org.gemoc.arduino.sequential.xarduino.arduino.AnalogPin;
-import org.gemoc.arduino.sequential.xarduino.arduino.ArduinoAnalogModule;
-import org.gemoc.arduino.sequential.xarduino.arduino.ArduinoBoard;
-import org.gemoc.arduino.sequential.xarduino.arduino.ArduinoDigitalModule;
-import org.gemoc.arduino.sequential.xarduino.arduino.ArduinoFactory;
-import org.gemoc.arduino.sequential.xarduino.arduino.BinaryBooleanExpression;
-import org.gemoc.arduino.sequential.xarduino.arduino.BinaryBooleanOperatorKind;
-import org.gemoc.arduino.sequential.xarduino.arduino.BinaryExpression;
-import org.gemoc.arduino.sequential.xarduino.arduino.BinaryIntegerExpression;
-import org.gemoc.arduino.sequential.xarduino.arduino.BinaryIntegerOperatorKind;
-import org.gemoc.arduino.sequential.xarduino.arduino.Block;
-import org.gemoc.arduino.sequential.xarduino.arduino.BluetoothTransceiver;
-import org.gemoc.arduino.sequential.xarduino.arduino.Board;
-import org.gemoc.arduino.sequential.xarduino.arduino.BooleanConstant;
-import org.gemoc.arduino.sequential.xarduino.arduino.BooleanModuleGet;
-import org.gemoc.arduino.sequential.xarduino.arduino.BooleanVariable;
-import org.gemoc.arduino.sequential.xarduino.arduino.BooleanVariableRef;
-import org.gemoc.arduino.sequential.xarduino.arduino.Buzzer;
-import org.gemoc.arduino.sequential.xarduino.arduino.Color;
-import org.gemoc.arduino.sequential.xarduino.arduino.Constant;
-import org.gemoc.arduino.sequential.xarduino.arduino.Control;
-import org.gemoc.arduino.sequential.xarduino.arduino.DigitalPin;
-import org.gemoc.arduino.sequential.xarduino.arduino.Expression;
-import org.gemoc.arduino.sequential.xarduino.arduino.Fan;
-import org.gemoc.arduino.sequential.xarduino.arduino.If;
-import org.gemoc.arduino.sequential.xarduino.arduino.InfraRedSensor;
-import org.gemoc.arduino.sequential.xarduino.arduino.Instruction;
-import org.gemoc.arduino.sequential.xarduino.arduino.IntegerConstant;
-import org.gemoc.arduino.sequential.xarduino.arduino.IntegerVariable;
-import org.gemoc.arduino.sequential.xarduino.arduino.IntegerVariableRef;
-import org.gemoc.arduino.sequential.xarduino.arduino.LED;
-import org.gemoc.arduino.sequential.xarduino.arduino.MicroServo;
-import org.gemoc.arduino.sequential.xarduino.arduino.Module;
-import org.gemoc.arduino.sequential.xarduino.arduino.ModuleAssignment;
-import org.gemoc.arduino.sequential.xarduino.arduino.ModuleGet;
-import org.gemoc.arduino.sequential.xarduino.arduino.ModuleInstruction;
-import org.gemoc.arduino.sequential.xarduino.arduino.MusicPlayer;
-import org.gemoc.arduino.sequential.xarduino.arduino.Pin;
-import org.gemoc.arduino.sequential.xarduino.arduino.Project;
-import org.gemoc.arduino.sequential.xarduino.arduino.PushButton;
-import org.gemoc.arduino.sequential.xarduino.arduino.RotationSensor;
-import org.gemoc.arduino.sequential.xarduino.arduino.Sketch;
-import org.gemoc.arduino.sequential.xarduino.arduino.SoundSensor;
-import org.gemoc.arduino.sequential.xarduino.arduino.UnaryBooleanExpression;
-import org.gemoc.arduino.sequential.xarduino.arduino.UnaryBooleanOperatorKind;
-import org.gemoc.arduino.sequential.xarduino.arduino.UnaryExpression;
-import org.gemoc.arduino.sequential.xarduino.arduino.UnaryIntegerExpression;
-import org.gemoc.arduino.sequential.xarduino.arduino.UnaryIntegerOperatorKind;
-import org.gemoc.arduino.sequential.xarduino.arduino.Variable;
-import org.gemoc.arduino.sequential.xarduino.arduino.VariableAssignment;
-import org.gemoc.arduino.sequential.xarduino.arduino.VariableDeclaration;
-import org.gemoc.arduino.sequential.xarduino.arduino.VariableRef;
-import org.gemoc.arduino.sequential.xarduino.arduino.While;
+import org.gemoc.sequential.model.arduino.AmbientLightSensor;
+import org.gemoc.sequential.model.arduino.AnalogPin;
+import org.gemoc.sequential.model.arduino.ArduinoAnalogModule;
+import org.gemoc.sequential.model.arduino.ArduinoBoard;
+import org.gemoc.sequential.model.arduino.ArduinoDigitalModule;
+import org.gemoc.sequential.model.arduino.ArduinoFactory;
+import org.gemoc.sequential.model.arduino.BinaryBooleanExpression;
+import org.gemoc.sequential.model.arduino.BinaryBooleanOperatorKind;
+import org.gemoc.sequential.model.arduino.BinaryExpression;
+import org.gemoc.sequential.model.arduino.BinaryIntegerExpression;
+import org.gemoc.sequential.model.arduino.BinaryIntegerOperatorKind;
+import org.gemoc.sequential.model.arduino.Block;
+import org.gemoc.sequential.model.arduino.BluetoothTransceiver;
+import org.gemoc.sequential.model.arduino.Board;
+import org.gemoc.sequential.model.arduino.BooleanConstant;
+import org.gemoc.sequential.model.arduino.BooleanModuleGet;
+import org.gemoc.sequential.model.arduino.BooleanVariable;
+import org.gemoc.sequential.model.arduino.BooleanVariableRef;
+import org.gemoc.sequential.model.arduino.Buzzer;
+import org.gemoc.sequential.model.arduino.Color;
+import org.gemoc.sequential.model.arduino.Constant;
+import org.gemoc.sequential.model.arduino.Control;
+import org.gemoc.sequential.model.arduino.DigitalPin;
+import org.gemoc.sequential.model.arduino.Expression;
+import org.gemoc.sequential.model.arduino.Fan;
+import org.gemoc.sequential.model.arduino.If;
+import org.gemoc.sequential.model.arduino.InfraRedSensor;
+import org.gemoc.sequential.model.arduino.Instruction;
+import org.gemoc.sequential.model.arduino.IntegerConstant;
+import org.gemoc.sequential.model.arduino.IntegerVariable;
+import org.gemoc.sequential.model.arduino.IntegerVariableRef;
+import org.gemoc.sequential.model.arduino.LED;
+import org.gemoc.sequential.model.arduino.MicroServo;
+import org.gemoc.sequential.model.arduino.Module;
+import org.gemoc.sequential.model.arduino.ModuleAssignment;
+import org.gemoc.sequential.model.arduino.ModuleGet;
+import org.gemoc.sequential.model.arduino.ModuleInstruction;
+import org.gemoc.sequential.model.arduino.MusicPlayer;
+import org.gemoc.sequential.model.arduino.Pin;
+import org.gemoc.sequential.model.arduino.Project;
+import org.gemoc.sequential.model.arduino.PushButton;
+import org.gemoc.sequential.model.arduino.RotationSensor;
+import org.gemoc.sequential.model.arduino.Sketch;
+import org.gemoc.sequential.model.arduino.SoundSensor;
+import org.gemoc.sequential.model.arduino.UnaryBooleanExpression;
+import org.gemoc.sequential.model.arduino.UnaryBooleanOperatorKind;
+import org.gemoc.sequential.model.arduino.UnaryExpression;
+import org.gemoc.sequential.model.arduino.UnaryIntegerExpression;
+import org.gemoc.sequential.model.arduino.UnaryIntegerOperatorKind;
+import org.gemoc.sequential.model.arduino.Variable;
+import org.gemoc.sequential.model.arduino.VariableAssignment;
+import org.gemoc.sequential.model.arduino.VariableDeclaration;
+import org.gemoc.sequential.model.arduino.VariableRef;
+import org.gemoc.sequential.model.arduino.While;
 import org.gemoc.arduino.sequential.xarduino.design.ArduinoDesignerUtils;
 
 import com.google.common.collect.ImmutableList;
@@ -201,17 +201,17 @@ public class ArduinoServices {
 		return res;
 	}
 	
-	public Integer getLevel(EObject eObject) {
-		if (eObject instanceof Pin) {
-			return ((Pin)eObject).getLevel();
-		}
-		if (eObject instanceof Module) {
-			if (eObject.eContainer() instanceof Pin) {
-				return ((Pin)(eObject.eContainer())).getLevel();
-			}
-		}
-		return 0;
-	}
+//	public Integer getLevel(EObject eObject) {
+//		if (eObject instanceof Pin) {
+//			return ((Pin)eObject).getLevel();
+//		}
+//		if (eObject instanceof Module) {
+//			if (eObject.eContainer() instanceof Pin) {
+//				return ((Pin)(eObject.eContainer())).getLevel();
+//			}
+//		}
+//		return 0;
+//	}
 	
 	public String getAnalogPinName(ArduinoBoard board) {
 			return board.getAnalogPins().size()+"";
@@ -532,23 +532,23 @@ public class ArduinoServices {
 		return label;
 	}
 	
-	public String computeDynamicLabel(VariableRef variableRef) {
-		if (variableRef instanceof BooleanVariableRef) {
-			BooleanVariable variable = ((BooleanVariableRef) variableRef).getVariable();
-			if (variable.getValue() != null) {
-				return variable.getName() + "(=" + variable.getValue() + ")";
-			}
-			return variable.getName();
-		}
-		if (variableRef instanceof IntegerVariableRef) {
-			IntegerVariable variable = ((IntegerVariableRef) variableRef).getVariable(); 
-			if (variable.getValue() != null) {
-				return variable.getName() + "(=" + variable.getValue() + ")";
-			}
-			return variable.getName();
-		}
-		return "";
-	}
+//	public String computeDynamicLabel(VariableRef variableRef) {
+//		if (variableRef instanceof BooleanVariableRef) {
+//			BooleanVariable variable = ((BooleanVariableRef) variableRef).getVariable();
+//			if (variable.getValue() != null) {
+//				return variable.getName() + "(=" + variable.getValue() + ")";
+//			}
+//			return variable.getName();
+//		}
+//		if (variableRef instanceof IntegerVariableRef) {
+//			IntegerVariable variable = ((IntegerVariableRef) variableRef).getVariable(); 
+//			if (variable.getValue() != null) {
+//				return variable.getName() + "(=" + variable.getValue() + ")";
+//			}
+//			return variable.getName();
+//		}
+//		return "";
+//	}
 
 	public String computeLabel(Expression expression) {
 		if (expression instanceof BooleanVariableRef) {
@@ -1066,22 +1066,22 @@ public class ArduinoServices {
 		return "/org.gemoc.arduino.sequential.xarduino.design/images/default.svg";
 	}
 	
-	public String getImage(LED led) {
-		Integer level = ArduinoDesignerUtils.getPin(led).getLevel();
-		if (level != null && level > 0) {
-			switch (led.getColor()) {
-			case BLUE: return "/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/blue_led_1023.jpg";
-			case RED: return "/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/red_led_1023.jpg";
-			case WHITE: return "/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/white_led_1023.jpg";
-			}
-		}
-		switch (led.getColor()) {
-		case BLUE: return "/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/blue_led.jpg";
-		case RED: return "/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/red_led.jpg";
-		case WHITE: return "/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/white_led.jpg";
-		}
-		return "/org.gemoc.arduino.sequential.xarduino.design/images/default.svg";
-	}
+//	public String getImage(LED led) {
+//		Integer level = ArduinoDesignerUtils.getPin(led).getLevel();
+//		if (level != null && level > 0) {
+//			switch (led.getColor()) {
+//			case BLUE: return "/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/blue_led_1023.jpg";
+//			case RED: return "/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/red_led_1023.jpg";
+//			case WHITE: return "/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/white_led_1023.jpg";
+//			}
+//		}
+//		switch (led.getColor()) {
+//		case BLUE: return "/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/blue_led.jpg";
+//		case RED: return "/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/red_led.jpg";
+//		case WHITE: return "/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/white_led.jpg";
+//		}
+//		return "/org.gemoc.arduino.sequential.xarduino.design/images/default.svg";
+//	}
 	
 	public String getImage(BluetoothTransceiver bluetoothTransceiver) {
 		return "/org.gemoc.arduino.sequential.xarduino.design/images/bluetooth.png";
