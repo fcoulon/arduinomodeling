@@ -579,7 +579,7 @@
         </nodeMappings>
         <nodeMappings name="SK_ModuleAssignment" semanticCandidatesExpression="feature:eContents" domainClass="arduino.ModuleAssignment">
           <borderedNodeMappings name="SK_DigitalModuleAssignment_Operand" label="Digital Module Assignment Operand" labelDirectEdit="//@ownedViewpoints[name='Arduino']/@ownedRepresentations[name='Sketch']/@defaultLayer/@toolSections.5/@ownedTools[name='SK_Edit_IntegerConstant']" semanticCandidatesExpression="feature:operand" doubleClickDescription="//@ownedViewpoints[name='Arduino']/@ownedRepresentations[name='Sketch']/@defaultLayer/@toolSections.5/@ownedTools[name='SK_Edit_BooleanConstant']" domainClass="arduino.BooleanExpression" reusedBorderedNodeMappings="//@ownedViewpoints[name='Arduino']/@ownedRepresentations[name='Sketch']/@defaultLayer/@nodeMappings[name='SK_Constant'] //@ownedViewpoints[name='Arduino']/@ownedRepresentations[name='Sketch']/@defaultLayer/@nodeMappings[name='SK_DigitalModuleGet'] //@ownedViewpoints[name='Arduino']/@ownedRepresentations[name='Sketch']/@defaultLayer/@nodeMappings[name='SK_VariableRef']">
-            <style xsi:type="style:SquareDescription" borderSizeComputationExpression="2" showIcon="false" labelExpression="service:computeLabel" labelPosition="node" resizeKind="NSEW" width="6" height="3" color="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20white']">
+            <style xsi:type="style:SquareDescription" borderSizeComputationExpression="5" showIcon="false" labelExpression="service:computeLabel" labelPosition="node" resizeKind="NSEW" width="6" height="3" color="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20white']">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
@@ -590,7 +590,7 @@
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </style>
           </borderedNodeMappings>
-          <style xsi:type="style:WorkspaceImageDescription" borderColor="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20dark%20gray']" labelExpression="service:computeExpressionLabel" labelColor="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20dark%20gray']" sizeComputationExpression="8" resizeKind="NSEW" arcWidth="1" arcHeight="1" workspacePath="moduleAssignmentImageFromWorkspace">
+          <style xsi:type="style:WorkspaceImageDescription" borderSizeComputationExpression="2" borderColor="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20dark%20gray']" labelExpression="service:computeExpressionLabel" labelColor="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20dark%20gray']" sizeComputationExpression="8" resizeKind="NSEW" arcWidth="1" arcHeight="1" workspacePath="moduleAssignmentImageFromWorkspace">
             <labelFormat>italic</labelFormat>
             <labelFormat>bold</labelFormat>
           </style>
@@ -661,7 +661,7 @@
           </conditionnalStyles>
         </containerMappings>
         <containerMappings name="SK_Repeat" semanticCandidatesExpression="feature:eContents" domainClass="arduino.Repeat" reusedContainerMappings="//@ownedViewpoints[name='Arduino']/@ownedRepresentations[name='Sketch']/@defaultLayer/@containerMappings[name='SK_Block']">
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" borderColor="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20dark%20gray']" showIcon="false" labelExpression="['Repeat '+self.iteration/]" labelColor="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20dark%20gray']" roundedCorner="true" backgroundStyle="Liquid" backgroundColor="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20light%20green']" foregroundColor="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20green']">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="3" borderColor="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20dark%20gray']" showIcon="false" labelExpression="['Repeat '+self.iteration/]" labelColor="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20dark%20gray']" roundedCorner="true" backgroundStyle="Liquid" backgroundColor="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20light%20green']" foregroundColor="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='Arduino%20green']">
             <labelFormat>italic</labelFormat>
             <labelFormat>bold</labelFormat>
             <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.0"/>
@@ -1510,7 +1510,7 @@
         </decorationDescriptionsSet>
         <customization>
           <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:self.hasBeenActivated">
-            <featureCustomizations xsi:type="description:EAttributeCustomization" applyOnAll="true" attributeName="borderSizeComputationExpression" value="2"/>
+            <featureCustomizations xsi:type="description:EAttributeCustomization" applyOnAll="true" attributeName="borderSizeComputationExpression" value="5"/>
             <featureCustomizations xsi:type="description:EReferenceCustomization" applyOnAll="true" referenceName="borderColor" value="//@userColorsPalettes[name='Arduino%20Palette']/@entries[name='current%20instruction']"/>
           </vsmElementCustomizations>
         </customization>

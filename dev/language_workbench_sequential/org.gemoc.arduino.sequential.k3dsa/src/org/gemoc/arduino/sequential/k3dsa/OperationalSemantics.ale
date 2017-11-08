@@ -360,13 +360,13 @@ open class arduino.BinaryBooleanExpression {
 			iRight := self.right.evaluate();
 		}
 		result := switch(self.operator) {
-			case (arduino::BinaryBooleanOperatorKind::and) :
+			case ('and'/*arduino::BinaryBooleanOperatorKind::and*/) :
 				if bLeft then
 					bRight
 				else 
 					Boolean.FALSE
 				endif
-			case (arduino::BinaryBooleanOperatorKind::or) :
+			case ('or'/*arduino::BinaryBooleanOperatorKind::or*/) :
 				if bLeft then
 					Boolean.TRUE
 				else 
