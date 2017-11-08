@@ -19,4 +19,12 @@ public class JavaServices {
 	public static Integer mod(Integer left, Integer right) {
 		return left % right;
 	}
+	
+	public static Integer max(Integer left, Integer right) {
+		return Math.max(left, right);
+	}
+	
+	public static Integer min(Integer left, Integer right) {
+		return Math.min(left, right);
+	}
 }

@@ -3,7 +3,7 @@ behavior org.gemoc.arduino.sequential.dsa;
 use org.gemoc.arduino.sequential.k3dsa.JavaServices;
 use org.gemoc.arduino.sequential.xardunio.design.services.ArduinoServices;
 
-open class Instruction {
+open class arduino.Instruction {
 	def Project getProject (Module module) {
 		Project project := null;
 		
@@ -48,7 +48,7 @@ open class Instruction {
 	}
 }
 
-open class Project {
+open class arduino.Project {
 	
 	def void execute() {
 		('DEBUG: exec').log();
@@ -104,7 +104,7 @@ open class Project {
 	}
 }
 
-open class VariableAssignment {
+open class arduino.VariableAssignment {
 	@step
 	def void execute() {
 		Variable variable := self.variable;
@@ -121,7 +121,7 @@ open class VariableAssignment {
 	}
 }
 
-open class Block {
+open class arduino.Block {
 	def void execute() {
 		for (i in self.instructions) {
 			i.execute();
@@ -129,12 +129,12 @@ open class Block {
 	}
 }
 
-open class ModuleInstruction {
+open class arduino.ModuleInstruction {
 	def void execute() {
 	}
 }
 
-open class ModuleAssignment {
+open class arduino.ModuleAssignment {
 	@step
 	def void execute() {
 		('DEBUG: ModuleAssign '+self).log();
@@ -161,11 +161,11 @@ open class ModuleAssignment {
 	}
 }
 
-open class ArduinoCommunicationModule {
+open class arduino.ArduinoCommunicationModule {
 	def void push() {}
 }
 
-open class BluetoothTransceiver {
+open class arduino.BluetoothTransceiver {
 	Sequence(Integer) dataToSend;
 	Sequence(Integer) dataReceived;
 	
@@ -193,14 +193,14 @@ open class arduino.VariableDeclaration {
 	}
 }
 
-open class Control {
+open class arduino.Control {
 	def void execute() {
 	}
 	def Boolean evaluate() {
 	}
 }
 
-open class If {
+open class arduino.If {
 	def Boolean evaluate() {
 		Boolean resCond := false;
 		if (self.condition.oclIsKindOf(arduino::BooleanExpression)){
@@ -221,7 +221,7 @@ open class If {
 	}
 }
 
-open class Repeat {
+open class arduino.Repeat {
 	Integer i := 0;
 
 	def Boolean evaluate() {
@@ -244,7 +244,7 @@ open class Repeat {
 	}
 }
 
-open class While {
+open class arduino.While {
 	def Boolean evaluate() {
 		Boolean resCond := self.condition.evaluate();
 		result := resCond;
@@ -256,12 +256,12 @@ open class While {
 	}
 }
 
-open class Utilities {
+open class arduino.Utilities {
 	def void execute() {
 	}
 }
 
-open class BinaryIntegerExpression {
+open class arduino.BinaryIntegerExpression {
 	def Object evaluate() {
 		('DEBUG: BinaryExp '+self).log();
 		Integer iLeft := 0;
@@ -273,8 +273,8 @@ open class BinaryIntegerExpression {
 		result :=
 			switch (self.operator) {
 				case (arduino::BinaryIntegerOperatorKind::div) : iLeft / iRight
-				case (arduino::BinaryIntegerOperatorKind::max) : Math.max(iLeft, iRight)
-				case (arduino::BinaryIntegerOperatorKind::min) : Math.min(iLeft, iRight)
+				case (arduino::BinaryIntegerOperatorKind::max) : iLeft.max(iRight)
+				case (arduino::BinaryIntegerOperatorKind::min) : iLeft.min(iRight)
 				case (arduino::BinaryIntegerOperatorKind::minus) : iLeft - iRight
 				case (arduino::BinaryIntegerOperatorKind::mul) : iLeft * iRight
 				case (arduino::BinaryIntegerOperatorKind::plus) : iLeft + iRight
@@ -291,7 +291,7 @@ open class BinaryIntegerExpression {
 	}
 }
 
-open class BooleanModuleGet {
+open class arduino.BooleanModuleGet {
 	def Object evaluate() {
 		Pin pin := self.instruction.getPin(self.module);
 		if (pin.level = 0){
@@ -303,19 +303,19 @@ open class BooleanModuleGet {
 	}
 }
 
-open class BooleanConstant {
+open class arduino.BooleanConstant {
 	def Object evaluate() {
 		result := self.value;
 	}
 }
 
-open class IntegerConstant {
+open class arduino.IntegerConstant {
 	def Object evaluate() {
 		result := self.value;
 	}
 }
 
-open class IntegerModuleGet {
+open class arduino.IntegerModuleGet {
 	def Object evaluate() {
 		
 		//FIXME Here it is dirty but I think we should 'transmit' the value in the module itself as the wire should do in true life
@@ -336,7 +336,7 @@ open class IntegerModuleGet {
 	}
 }
 
-open class BinaryBooleanExpression {
+open class arduino.BinaryBooleanExpression {
 	def Object evaluate() {
 		Boolean leftIsBoolean := false;
 		Boolean rightIsBoolean := false;
@@ -388,7 +388,7 @@ open class BinaryBooleanExpression {
 	}
 }
 
-open class Constant {
+open class arduino.Constant {
 	def Object evaluate() {
 		if(self.oclIsKindOf(arduino::BooleanConstant)) {
 			result := self.value;
@@ -399,24 +399,24 @@ open class Constant {
 	}
 }
 
-open class Delay {
+open class arduino.Delay {
 	@step
 	def void execute() {
 		self.value.sleep();
 	}
 }
 
-open class Pin {
+open class arduino.Pin {
 	Integer level;
 }
 
-open class Variable {
+open class arduino.Variable {
 	def Object evaluate() {
 		
 	}
 }
 
-open class IntegerVariable {
+open class arduino.IntegerVariable {
 	Integer value;
 	
 	def Object evaluate(){
@@ -426,7 +426,7 @@ open class IntegerVariable {
 	}
 }
 
-open class BooleanVariable {
+open class arduino.BooleanVariable {
 	Boolean value;
 	
 	def Object evaluate(){
@@ -434,7 +434,7 @@ open class BooleanVariable {
 	}
 }
 
-open class VariableRef {
+open class arduino.VariableRef {
 	def Object evaluate(){
 		if(self.oclIsKindOf(arduino::BooleanVariableRef)) {
 			result := self.variable.evaluate();
@@ -454,6 +454,7 @@ open class VariableRef {
 			else {
 				result := variable.name;
 			}
+			('DEBUG: LABEL bool '+result).log();
 		}
 		if (self.oclIsKindOf(arduino::IntegerVariableRef)) {
 			IntegerVariable variable := self.variable;
@@ -463,11 +464,12 @@ open class VariableRef {
 			else {
 				result := variable.name;
 			}
+			('DEBUG: LABEL int '+result).log();
 		}
 	}
 }
 
-open class Expression {
+open class arduino.Expression {
 	def Instruction getInstruction() {
 		Instruction instruction := null;
 
@@ -488,7 +490,7 @@ open class Expression {
 	}
 }
 
-open class LED {
+open class arduino.LED {
 	def String getImage() {
 		Integer level := self.getPin().level;
 //		('DEBUG: LED '+ self).log();
@@ -504,19 +506,21 @@ open class LED {
 					default : '/org.gemoc.arduino.sequential.xarduino.design/images/default.svg'
 				};
 		}
-		result :=
-			switch (self.color) {
-				case (arduino::Color::blue) : '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/blue_led.jpg'
-				case (arduino::Color::red) : '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/red_led.jpg'
-				case (arduino::Color::white) : '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/white_led.jpg'
-				default : '/org.gemoc.arduino.sequential.xarduino.design/images/default.svg'
-			};
+		else {
+			result :=
+				switch (self.color) {
+					case (arduino::Color::blue) : '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/blue_led.jpg'
+					case (arduino::Color::red) : '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/red_led.jpg'
+					case (arduino::Color::white) : '/org.gemoc.arduino.sequential.xarduino.design/images/dfrobot/white_led.jpg'
+					default : '/org.gemoc.arduino.sequential.xarduino.design/images/default.svg'
+				};
+		}
 //		('DEBUG: LED'+ result).log();
-		//result := '/org.gemoc.arduino.sequential.xarduino.design/images/default.svg';
+//		result := '/org.gemoc.arduino.sequential.xarduino.design/images/default.svg';
 	}
 }
 
-open class Module {
+open class arduino.Module {
 	
 	def Project getProject() {
 		Project project := null;

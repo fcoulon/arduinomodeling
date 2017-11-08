@@ -18,5 +18,6 @@ Require-Bundle: fr.inria.diverse.k3.al.annotationprocessor.plugin,
  fr.inria.diverse.melange.lib;bundle-version="0.1.0",
  fr.inria.diverse.melange.resource;bundle-version="0.1.0",
  org.gemoc.arduino.sequential.model;bundle-version="0.0.0";visibility:="reexport",
- org.gemoc.arduino.sequential.k3dsa;bundle-version="0.0.0";visibility:="reexport"
+ org.gemoc.arduino.sequential.k3dsa;bundle-version="0.0.0";visibility:="reexport",
+ org.gemoc.arduino.sequential.xarduino.design;bundle-version="0.0.0";visibility:="reexport"
 Bundle-ManifestVersion: 2
