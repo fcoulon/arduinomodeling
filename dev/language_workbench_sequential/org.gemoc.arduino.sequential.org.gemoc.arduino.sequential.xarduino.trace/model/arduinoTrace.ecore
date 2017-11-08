@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="arduinoTrace" nsURI="arduinoTrace" nsPrefix="arduinoTrace">
+  <eClassifiers xsi:type="ecore:EClass" name="SpecificTrace">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Arduino_BluetoothTransceiver_Push_Sequence"
+        upperBound="-1" eType="#//Steps/Arduino_BluetoothTransceiver_Push"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Arduino_Delay_Execute_Sequence"
+        upperBound="-1" eType="#//Steps/Arduino_Delay_Execute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Arduino_If_Execute_Sequence"
+        upperBound="-1" eType="#//Steps/Arduino_If_Execute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Arduino_Instruction_Execute_Sequence"
+        upperBound="-1" eType="#//Steps/Arduino_Instruction_Execute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Arduino_ModuleAssignment_Execute_Sequence"
+        upperBound="-1" eType="#//Steps/Arduino_ModuleAssignment_Execute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Arduino_ModuleInstruction_Execute_Sequence"
+        upperBound="-1" eType="#//Steps/Arduino_ModuleInstruction_Execute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Arduino_Project_Setup_Sequence"
+        upperBound="-1" eType="#//Steps/Arduino_Project_Setup"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Arduino_Repeat_Execute_Sequence"
+        upperBound="-1" eType="#//Steps/Arduino_Repeat_Execute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Arduino_Utilities_Execute_Sequence"
+        upperBound="-1" eType="#//Steps/Arduino_Utilities_Execute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Arduino_VariableAssignment_Execute_Sequence"
+        upperBound="-1" eType="#//Steps/Arduino_VariableAssignment_Execute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Arduino_VariableDeclaration_Execute_Sequence"
+        upperBound="-1" eType="#//Steps/Arduino_VariableDeclaration_Execute"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//Trace">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SequentialStep">
+        <eTypeArguments>
+          <eUpperBound eClassifier="#//Steps/SpecificStep"/>
+        </eTypeArguments>
+        <eTypeArguments>
+          <eUpperBound eClassifier="#//States/SpecificState"/>
+        </eTypeArguments>
+      </eTypeArguments>
+      <eTypeArguments eClassifier="#//States/SpecificTracedObject">
+        <eTypeArguments>
+          <eUpperBound eClassifier="#//States/SpecificDimension">
+            <eTypeArguments>
+              <eUpperBound eClassifier="#//States/SpecificValue"/>
+            </eTypeArguments>
+          </eUpperBound>
+        </eTypeArguments>
+      </eTypeArguments>
+      <eTypeArguments eClassifier="#//States/SpecificState"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eSubpackages name="Steps" nsURI="arduinoTrace_Steps" nsPrefix="events">
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_BluetoothTransceiver_Push">
+      <eOperations name="getCaller" lowerBound="1" eType="#//States/arduino/TracedBluetoothTransceiver">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (arduinoTrace.States.arduino.TracedBluetoothTransceiver) this.getMseoccurrence().getMse().getCaller();"/>
+        </eAnnotations>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//Steps/SpecificStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SmallStep">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_Delay_Execute">
+      <eOperations name="getCaller" lowerBound="1" eType="#//States/arduino/TracedDelay">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (arduinoTrace.States.arduino.TracedDelay) this.getMseoccurrence().getMse().getCaller();"/>
+        </eAnnotations>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//Steps/SpecificStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SmallStep">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_If_Execute">
+      <eOperations name="getCaller" lowerBound="1" eType="#//States/arduino/TracedIf">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (arduinoTrace.States.arduino.TracedIf) this.getMseoccurrence().getMse().getCaller();"/>
+        </eAnnotations>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//Steps/SpecificStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SequentialStep">
+        <eTypeArguments eClassifier="#//Steps/Arduino_If_Execute_AbstractSubStep"/>
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_If_Execute_AbstractSubStep"
+        abstract="true" interface="true" eSuperTypes="#//Steps/SpecificStep"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_If_Execute_ImplicitStep">
+      <eGenericSuperTypes eClassifier="#//Steps/Arduino_If_Execute_AbstractSubStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SmallStep">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_Instruction_Execute">
+      <eOperations name="getCaller" lowerBound="1" eType="#//States/arduino/TracedInstruction">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (arduinoTrace.States.arduino.TracedInstruction) this.getMseoccurrence().getMse().getCaller();"/>
+        </eAnnotations>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//Steps/Arduino_If_Execute_AbstractSubStep"/>
+      <eGenericSuperTypes eClassifier="#//Steps/Arduino_Repeat_Execute_AbstractSubStep"/>
+      <eGenericSuperTypes eClassifier="#//Steps/SpecificStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SequentialStep">
+        <eTypeArguments eClassifier="#//Steps/Arduino_Instruction_Execute_AbstractSubStep"/>
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//Steps/Arduino_Instruction_Execute_AbstractSubStep"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_Instruction_Execute_AbstractSubStep"
+        abstract="true" interface="true" eSuperTypes="#//Steps/SpecificStep"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_Instruction_Execute_ImplicitStep">
+      <eGenericSuperTypes eClassifier="#//Steps/Arduino_Instruction_Execute_AbstractSubStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SmallStep">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_ModuleAssignment_Execute">
+      <eOperations name="getCaller" lowerBound="1" eType="#//States/arduino/TracedModuleAssignment">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (arduinoTrace.States.arduino.TracedModuleAssignment) this.getMseoccurrence().getMse().getCaller();"/>
+        </eAnnotations>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//Steps/SpecificStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SmallStep">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_ModuleInstruction_Execute">
+      <eOperations name="getCaller" lowerBound="1" eType="#//States/arduino/TracedModuleInstruction">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (arduinoTrace.States.arduino.TracedModuleInstruction) this.getMseoccurrence().getMse().getCaller();"/>
+        </eAnnotations>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//Steps/SpecificStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SmallStep">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_Project_Setup">
+      <eOperations name="getCaller" lowerBound="1" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//Project">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (org.gemoc.sequential.model.arduino.Project) this.getMseoccurrence().getMse().getCaller();"/>
+        </eAnnotations>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//Steps/SpecificStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SmallStep">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_Repeat_Execute">
+      <eOperations name="getCaller" lowerBound="1" eType="#//States/arduino/TracedRepeat">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (arduinoTrace.States.arduino.TracedRepeat) this.getMseoccurrence().getMse().getCaller();"/>
+        </eAnnotations>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//Steps/SpecificStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SequentialStep">
+        <eTypeArguments eClassifier="#//Steps/Arduino_Repeat_Execute_AbstractSubStep"/>
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_Repeat_Execute_AbstractSubStep"
+        abstract="true" interface="true" eSuperTypes="#//Steps/SpecificStep"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_Repeat_Execute_ImplicitStep">
+      <eGenericSuperTypes eClassifier="#//Steps/Arduino_Repeat_Execute_AbstractSubStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SmallStep">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_Utilities_Execute">
+      <eOperations name="getCaller" lowerBound="1" eType="#//States/arduino/TracedUtilities">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (arduinoTrace.States.arduino.TracedUtilities) this.getMseoccurrence().getMse().getCaller();"/>
+        </eAnnotations>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//Steps/SpecificStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SmallStep">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_VariableAssignment_Execute">
+      <eOperations name="getCaller" lowerBound="1" eType="#//States/arduino/TracedVariableAssignment">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (arduinoTrace.States.arduino.TracedVariableAssignment) this.getMseoccurrence().getMse().getCaller();"/>
+        </eAnnotations>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//Steps/SpecificStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SmallStep">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Arduino_VariableDeclaration_Execute">
+      <eOperations name="getCaller" lowerBound="1" eType="#//States/arduino/TracedVariableDeclaration">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return (arduinoTrace.States.arduino.TracedVariableDeclaration) this.getMseoccurrence().getMse().getCaller();"/>
+        </eAnnotations>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//Steps/SpecificStep"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SmallStep">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RootImplicitStep">
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SmallStep">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SpecificRootStep">
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//SequentialStep">
+        <eTypeArguments eClassifier="#//Steps/SpecificStep"/>
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//Steps/SpecificStep"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SpecificStep" abstract="true">
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//Step">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="States" nsURI="arduinoTrace_States" nsPrefix="tracedclasses">
+    <eClassifiers xsi:type="ecore:EClass" name="BluetoothTransceiver_dataReceived_Dimension">
+      <eGenericSuperTypes eClassifier="#//States/SpecificDimension">
+        <eTypeArguments eClassifier="#//States/BluetoothTransceiver_dataReceived_Value"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BluetoothTransceiver_dataReceived_Value"
+        eSuperTypes="#//States/SpecificAttributeValue">
+      <eAnnotations source="http://www.modelexecution.org/trace/XMOF">
+        <details key="executionMetamodelElement"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataReceived" unique="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BluetoothTransceiver_dataToSend_Dimension">
+      <eGenericSuperTypes eClassifier="#//States/SpecificDimension">
+        <eTypeArguments eClassifier="#//States/BluetoothTransceiver_dataToSend_Value"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BluetoothTransceiver_dataToSend_Value"
+        eSuperTypes="#//States/SpecificAttributeValue">
+      <eAnnotations source="http://www.modelexecution.org/trace/XMOF">
+        <details key="executionMetamodelElement"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataToSend" unique="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BooleanVariable_value_Dimension">
+      <eGenericSuperTypes eClassifier="#//States/SpecificDimension">
+        <eTypeArguments eClassifier="#//States/BooleanVariable_value_Value"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BooleanVariable_value_Value" eSuperTypes="#//States/SpecificAttributeValue">
+      <eAnnotations source="http://www.modelexecution.org/trace/XMOF">
+        <details key="executionMetamodelElement"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" unique="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IntegerVariable_value_Dimension">
+      <eGenericSuperTypes eClassifier="#//States/SpecificDimension">
+        <eTypeArguments eClassifier="#//States/IntegerVariable_value_Value"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IntegerVariable_value_Value" eSuperTypes="#//States/SpecificAttributeValue">
+      <eAnnotations source="http://www.modelexecution.org/trace/XMOF">
+        <details key="executionMetamodelElement"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" unique="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Pin_level_Dimension">
+      <eGenericSuperTypes eClassifier="#//States/SpecificDimension">
+        <eTypeArguments eClassifier="#//States/Pin_level_Value"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Pin_level_Value" eSuperTypes="#//States/SpecificAttributeValue">
+      <eAnnotations source="http://www.modelexecution.org/trace/XMOF">
+        <details key="executionMetamodelElement"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" unique="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Repeat_i_Dimension">
+      <eGenericSuperTypes eClassifier="#//States/SpecificDimension">
+        <eTypeArguments eClassifier="#//States/Repeat_i_Value"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Repeat_i_Value" eSuperTypes="#//States/SpecificAttributeValue">
+      <eAnnotations source="http://www.modelexecution.org/trace/XMOF">
+        <details key="executionMetamodelElement"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="i" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SpecificAttributeValue" abstract="true"
+        interface="true" eSuperTypes="#//States/SpecificValue"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SpecificDimension" abstract="true">
+      <eTypeParameters name="ValueSubType">
+        <eBounds eClassifier="#//States/SpecificValue"/>
+      </eTypeParameters>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//Dimension">
+        <eTypeArguments eTypeParameter="#//States/SpecificDimension/ValueSubType"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SpecificReferenceValue" abstract="true"
+        interface="true" eSuperTypes="#//States/SpecificValue">
+      <eTypeParameters name="T"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SpecificState">
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//State">
+        <eTypeArguments eClassifier="#//Steps/SpecificStep"/>
+        <eTypeArguments eClassifier="#//States/SpecificValue"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SpecificTracedObject" abstract="true">
+      <eTypeParameters name="DimensionSubType">
+        <eBounds eClassifier="#//States/SpecificDimension">
+          <eTypeArguments>
+            <eUpperBound eClassifier="#//States/SpecificValue"/>
+          </eTypeArguments>
+        </eBounds>
+      </eTypeParameters>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//TracedObject">
+        <eTypeArguments eTypeParameter="#//States/SpecificTracedObject/DimensionSubType"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SpecificValue" abstract="true">
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.ecore#//Value">
+        <eTypeArguments eClassifier="#//States/SpecificState"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
+    <eSubpackages name="arduino" nsURI="arduinoTrace_arduino" nsPrefix="">
+      <eClassifiers xsi:type="ecore:EClass" name="TracedAmbientLightSensor" eSuperTypes="#//States/arduino/TracedArduinoAnalogModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//AmbientLightSensor"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedAnalogPin" eSuperTypes="#//States/arduino/TracedPin">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//AnalogPin"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedArduinoAnalogModule" abstract="true"
+          eSuperTypes="#//States/arduino/TracedArduinoModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedArduinoBoard" eSuperTypes="#//States/arduino/TracedBoard">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//ArduinoBoard"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedArduinoCommunicationModule"
+          abstract="true" eSuperTypes="#//States/arduino/TracedArduinoDigitalModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedArduinoDigitalModule" abstract="true"
+          eSuperTypes="#//States/arduino/TracedArduinoModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedArduinoModule" abstract="true"
+          eSuperTypes="#//States/arduino/TracedModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedAssignment" abstract="true"
+          eSuperTypes="#//States/arduino/TracedInstruction">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedBluetoothTransceiver" eSuperTypes="#//States/arduino/TracedArduinoAnalogModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;result.add(getBluetoothTransceiver_dataReceived_Dimension());&#xA;result.add(getBluetoothTransceiver_dataToSend_Dimension());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="bluetoothTransceiver_dataReceived_Dimension"
+            eType="#//States/BluetoothTransceiver_dataReceived_Dimension" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="bluetoothTransceiver_dataToSend_Dimension"
+            eType="#//States/BluetoothTransceiver_dataToSend_Dimension" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//BluetoothTransceiver"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedBoard" abstract="true" eSuperTypes="#//States/arduino/TracedNamedElement">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedBooleanVariable" eSuperTypes="#//States/arduino/TracedVariable">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;result.add(getBooleanVariable_value_Dimension());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="booleanVariable_value_Dimension"
+            eType="#//States/BooleanVariable_value_Dimension" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//BooleanVariable"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedBuzzer" eSuperTypes="#//States/arduino/TracedArduinoDigitalModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//Buzzer"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedControl" abstract="true" eSuperTypes="#//States/arduino/TracedInstruction">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedDelay" eSuperTypes="#//States/arduino/TracedUtilities">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//Delay"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedDigitalPin" eSuperTypes="#//States/arduino/TracedPin">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//DigitalPin"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedFan" eSuperTypes="#//States/arduino/TracedArduinoDigitalModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//Fan"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedIf" eSuperTypes="#//States/arduino/TracedControl">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//If"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedInfraRedSensor" eSuperTypes="#//States/arduino/TracedArduinoDigitalModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//InfraRedSensor"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedInstruction" abstract="true">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eGenericSuperTypes eClassifier="#//States/SpecificTracedObject">
+          <eTypeArguments eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eTypeArguments>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedIntegerVariable" eSuperTypes="#//States/arduino/TracedVariable">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;result.add(getIntegerVariable_value_Dimension());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="integerVariable_value_Dimension"
+            eType="#//States/IntegerVariable_value_Dimension" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//IntegerVariable"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedLED" eSuperTypes="#//States/arduino/TracedArduinoDigitalModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//LED"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedMicroServo" eSuperTypes="#//States/arduino/TracedArduinoDigitalModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//MicroServo"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedModule" abstract="true" eSuperTypes="#//States/arduino/TracedNamedElement">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedModuleAssignment" eSuperTypes="#//States/arduino/TracedModuleInstruction #//States/arduino/TracedAssignment">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//ModuleAssignment"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedModuleInstruction" abstract="true"
+          eSuperTypes="#//States/arduino/TracedInstruction">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedMusicPlayer" eSuperTypes="#//States/arduino/TracedArduinoAnalogModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//MusicPlayer"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedNamedElement" abstract="true">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eGenericSuperTypes eClassifier="#//States/SpecificTracedObject">
+          <eTypeArguments eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eTypeArguments>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedPin" abstract="true" eSuperTypes="#//States/arduino/TracedNamedElement">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;result.add(getPin_level_Dimension());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="pin_level_Dimension"
+            eType="#//States/Pin_level_Dimension" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedPushButton" eSuperTypes="#//States/arduino/TracedArduinoDigitalModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//PushButton"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedRepeat" eSuperTypes="#//States/arduino/TracedControl">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;result.add(getRepeat_i_Dimension());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//Repeat"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="repeat_i_Dimension"
+            eType="#//States/Repeat_i_Dimension" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedRotationSensor" eSuperTypes="#//States/arduino/TracedArduinoAnalogModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//RotationSensor"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedSketch" eSuperTypes="#//States/arduino/TracedNamedElement">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//Sketch"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedSoundSensor" eSuperTypes="#//States/arduino/TracedArduinoAnalogModule">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//SoundSensor"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedUtilities" abstract="true"
+          eSuperTypes="#//States/arduino/TracedInstruction">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedVariable" abstract="true"
+          eSuperTypes="#//States/arduino/TracedNamedElement">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedVariableAssignment" eSuperTypes="#//States/arduino/TracedInstruction #//States/arduino/TracedAssignment">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//VariableAssignment"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedVariableDeclaration" eSuperTypes="#//States/arduino/TracedInstruction">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//VariableDeclaration"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TracedWhile" eSuperTypes="#//States/arduino/TracedControl">
+        <eOperations name="getDimensionsInternal" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="final EList&lt;SpecificDimension&lt;?>> result = new org.eclipse.emf.ecore.util.BasicInternalEList&lt;SpecificDimension&lt;?>>(Object.class);&#xA;result.addAll(super.getDimensionsInternal());&#xA;return result;&#xA;"/>
+          </eAnnotations>
+          <eGenericType eClassifier="#//States/SpecificDimension">
+            <eTypeArguments/>
+          </eGenericType>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalObject" eType="ecore:EClass ../../org.gemoc.arduino.sequential.model/model/arduino.ecore#//While"/>
+      </eClassifiers>
+    </eSubpackages>
+  </eSubpackages>
+</ecore:EPackage>

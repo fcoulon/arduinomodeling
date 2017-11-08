@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.gemoc.arduino.sequential.org.gemoc.arduino.sequential.xarduino.trace2/src"
+    modelPluginID="org.gemoc.arduino.sequential.org.gemoc.arduino.sequential.xarduino.trace2"
+    modelName="ArduinoTrace" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.gemoc.trace.commons.model/model/GenericTrace.genmodel#//trace ../../org.gemoc.arduino.sequential.model/model/arduino.genmodel#//arduino"
+    importOrganizing="true">
+  <foreignModel>platform:/resource/org.gemoc.arduino.sequential.org.gemoc.arduino.sequential.xarduino.trace2/model/arduinoTrace.ecore</foreignModel>
+  <genPackages prefix="ArduinoTrace" disposableProviderFactory="true" ecorePackage="arduinoTrace.ecore#/">
+    <genClasses ecoreClass="arduinoTrace.ecore#//SpecificTrace">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//SpecificTrace/Arduino_BluetoothTransceiver_Push_Sequence"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//SpecificTrace/Arduino_Delay_Execute_Sequence"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//SpecificTrace/Arduino_If_Execute_Sequence"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//SpecificTrace/Arduino_Instruction_Execute_Sequence"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//SpecificTrace/Arduino_ModuleAssignment_Execute_Sequence"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//SpecificTrace/Arduino_ModuleInstruction_Execute_Sequence"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//SpecificTrace/Arduino_Project_Setup_Sequence"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//SpecificTrace/Arduino_Repeat_Execute_Sequence"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//SpecificTrace/Arduino_Utilities_Execute_Sequence"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//SpecificTrace/Arduino_VariableAssignment_Execute_Sequence"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//SpecificTrace/Arduino_VariableDeclaration_Execute_Sequence"/>
+    </genClasses>
+    <nestedGenPackages prefix="Steps" disposableProviderFactory="true" ecorePackage="arduinoTrace.ecore#//Steps">
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_BluetoothTransceiver_Push">
+        <genOperations ecoreOperation="arduinoTrace.ecore#//Steps/Arduino_BluetoothTransceiver_Push/getCaller"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_Delay_Execute">
+        <genOperations ecoreOperation="arduinoTrace.ecore#//Steps/Arduino_Delay_Execute/getCaller"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_If_Execute">
+        <genOperations ecoreOperation="arduinoTrace.ecore#//Steps/Arduino_If_Execute/getCaller"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="arduinoTrace.ecore#//Steps/Arduino_If_Execute_AbstractSubStep"/>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_If_Execute_ImplicitStep"/>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_Instruction_Execute">
+        <genOperations ecoreOperation="arduinoTrace.ecore#//Steps/Arduino_Instruction_Execute/getCaller"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="arduinoTrace.ecore#//Steps/Arduino_Instruction_Execute_AbstractSubStep"/>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_Instruction_Execute_ImplicitStep"/>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_ModuleAssignment_Execute">
+        <genOperations ecoreOperation="arduinoTrace.ecore#//Steps/Arduino_ModuleAssignment_Execute/getCaller"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_ModuleInstruction_Execute">
+        <genOperations ecoreOperation="arduinoTrace.ecore#//Steps/Arduino_ModuleInstruction_Execute/getCaller"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_Project_Setup">
+        <genOperations ecoreOperation="arduinoTrace.ecore#//Steps/Arduino_Project_Setup/getCaller"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_Repeat_Execute">
+        <genOperations ecoreOperation="arduinoTrace.ecore#//Steps/Arduino_Repeat_Execute/getCaller"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="arduinoTrace.ecore#//Steps/Arduino_Repeat_Execute_AbstractSubStep"/>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_Repeat_Execute_ImplicitStep"/>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_Utilities_Execute">
+        <genOperations ecoreOperation="arduinoTrace.ecore#//Steps/Arduino_Utilities_Execute/getCaller"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_VariableAssignment_Execute">
+        <genOperations ecoreOperation="arduinoTrace.ecore#//Steps/Arduino_VariableAssignment_Execute/getCaller"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/Arduino_VariableDeclaration_Execute">
+        <genOperations ecoreOperation="arduinoTrace.ecore#//Steps/Arduino_VariableDeclaration_Execute/getCaller"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/RootImplicitStep"/>
+      <genClasses ecoreClass="arduinoTrace.ecore#//Steps/SpecificRootStep"/>
+      <genClasses image="false" ecoreClass="arduinoTrace.ecore#//Steps/SpecificStep"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="States" disposableProviderFactory="true" ecorePackage="arduinoTrace.ecore#//States">
+      <genClasses ecoreClass="arduinoTrace.ecore#//States/BluetoothTransceiver_dataReceived_Dimension"/>
+      <genClasses ecoreClass="arduinoTrace.ecore#//States/BluetoothTransceiver_dataReceived_Value">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute arduinoTrace.ecore#//States/BluetoothTransceiver_dataReceived_Value/dataReceived"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//States/BluetoothTransceiver_dataToSend_Dimension"/>
+      <genClasses ecoreClass="arduinoTrace.ecore#//States/BluetoothTransceiver_dataToSend_Value">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute arduinoTrace.ecore#//States/BluetoothTransceiver_dataToSend_Value/dataToSend"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//States/BooleanVariable_value_Dimension"/>
+      <genClasses ecoreClass="arduinoTrace.ecore#//States/BooleanVariable_value_Value">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute arduinoTrace.ecore#//States/BooleanVariable_value_Value/value"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//States/IntegerVariable_value_Dimension"/>
+      <genClasses ecoreClass="arduinoTrace.ecore#//States/IntegerVariable_value_Value">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute arduinoTrace.ecore#//States/IntegerVariable_value_Value/value"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//States/Pin_level_Dimension"/>
+      <genClasses ecoreClass="arduinoTrace.ecore#//States/Pin_level_Value">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute arduinoTrace.ecore#//States/Pin_level_Value/level"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//States/Repeat_i_Dimension"/>
+      <genClasses ecoreClass="arduinoTrace.ecore#//States/Repeat_i_Value">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute arduinoTrace.ecore#//States/Repeat_i_Value/i"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/SpecificAttributeValue"/>
+      <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/SpecificDimension">
+        <genTypeParameters ecoreTypeParameter="arduinoTrace.ecore#//States/SpecificDimension/ValueSubType"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/SpecificReferenceValue">
+        <genTypeParameters ecoreTypeParameter="arduinoTrace.ecore#//States/SpecificReferenceValue/T"/>
+      </genClasses>
+      <genClasses ecoreClass="arduinoTrace.ecore#//States/SpecificState"/>
+      <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/SpecificTracedObject">
+        <genTypeParameters ecoreTypeParameter="arduinoTrace.ecore#//States/SpecificTracedObject/DimensionSubType"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/SpecificValue"/>
+      <nestedGenPackages prefix="Arduino" disposableProviderFactory="true" ecorePackage="arduinoTrace.ecore#//States/arduino">
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedAmbientLightSensor">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedAmbientLightSensor/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedAmbientLightSensor/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedAnalogPin">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedAnalogPin/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedAnalogPin/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedArduinoAnalogModule">
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedArduinoAnalogModule/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedArduinoBoard">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedArduinoBoard/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedArduinoBoard/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedArduinoCommunicationModule">
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedArduinoCommunicationModule/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedArduinoDigitalModule">
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedArduinoDigitalModule/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedArduinoModule">
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedArduinoModule/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedAssignment">
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedAssignment/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedBluetoothTransceiver">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedBluetoothTransceiver/bluetoothTransceiver_dataReceived_Dimension"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedBluetoothTransceiver/bluetoothTransceiver_dataToSend_Dimension"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedBluetoothTransceiver/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedBluetoothTransceiver/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedBoard">
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedBoard/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedBooleanVariable">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedBooleanVariable/booleanVariable_value_Dimension"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedBooleanVariable/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedBooleanVariable/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedBuzzer">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedBuzzer/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedBuzzer/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedControl">
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedControl/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedDelay">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedDelay/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedDelay/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedDigitalPin">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedDigitalPin/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedDigitalPin/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedFan">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedFan/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedFan/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedIf">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedIf/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedIf/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedInfraRedSensor">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedInfraRedSensor/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedInfraRedSensor/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedInstruction">
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedInstruction/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedIntegerVariable">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedIntegerVariable/integerVariable_value_Dimension"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedIntegerVariable/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedIntegerVariable/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedLED">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedLED/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedLED/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedMicroServo">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedMicroServo/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedMicroServo/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedModule">
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedModule/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedModuleAssignment">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedModuleAssignment/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedModuleAssignment/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedModuleInstruction">
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedModuleInstruction/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedMusicPlayer">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedMusicPlayer/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedMusicPlayer/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedNamedElement">
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedNamedElement/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedPin">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedPin/pin_level_Dimension"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedPin/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedPushButton">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedPushButton/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedPushButton/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedRepeat">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedRepeat/originalObject"/>
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedRepeat/repeat_i_Dimension"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedRepeat/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedRotationSensor">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedRotationSensor/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedRotationSensor/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedSketch">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedSketch/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedSketch/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedSoundSensor">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedSoundSensor/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedSoundSensor/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedUtilities">
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedUtilities/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="arduinoTrace.ecore#//States/arduino/TracedVariable">
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedVariable/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedVariableAssignment">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedVariableAssignment/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedVariableAssignment/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedVariableDeclaration">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedVariableDeclaration/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedVariableDeclaration/getDimensionsInternal"/>
+        </genClasses>
+        <genClasses ecoreClass="arduinoTrace.ecore#//States/arduino/TracedWhile">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference arduinoTrace.ecore#//States/arduino/TracedWhile/originalObject"/>
+          <genOperations ecoreOperation="arduinoTrace.ecore#//States/arduino/TracedWhile/getDimensionsInternal"/>
+        </genClasses>
+      </nestedGenPackages>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>
